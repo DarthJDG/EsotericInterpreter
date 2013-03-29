@@ -1,8 +1,11 @@
 require "./languages/Brainfucklike.rb"
 
 class Brainfork < Brainfucklike
+	attr_accessor :new_fork
+
 	@saved_options   # Saved list of options
 	@children        # List of child threads
+	@new_fork        # Set true for the first iteration of the fork
 
 	def initialize(options)
 		super
@@ -13,6 +16,7 @@ class Brainfork < Brainfucklike
 		@embed_input = options.include?("-i") or options.include?("--embed-input")
 		
 		@children = []
+		@new_fork = false
 	end
 	
 	def preprocess_program
@@ -44,6 +48,11 @@ class Brainfork < Brainfucklike
 	end
 
 	def step
+		if @new_fork
+			@new_fork = false
+			return true
+		end
+	
 		instruction = @program[@ip]
 		if instruction != nil
 			do_instruction(instruction)
@@ -77,6 +86,7 @@ class Brainfork < Brainfucklike
 		value_zero
 		child.pointer_add
 		child.value = 1
+		child.new_fork = true
 		@children.push(child)
 	end
 end

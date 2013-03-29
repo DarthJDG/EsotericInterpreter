@@ -1,10 +1,16 @@
 require "stringio"
 require "./modules/utils.rb"
+require "./modules/deep_copy.rb"
 
 # A generic brainfuck-like engine to be used by some languages. It implements
 # all common features.
 
 class Brainfucklike
+	attr_reader :program, :program_stack, :ip_stack
+	attr_reader :positive_tape, :negative_tape, :tape, :p
+	attr_reader :register, :loop_stack
+	attr_accessor :ip
+
 	@program         # Stores the program that's being processed
 	@program_stack   # Saved program stack for procedure calls
 	@ip              # Instruction pointer for the current program
@@ -24,6 +30,26 @@ class Brainfucklike
 		@max_value = 256       # By default values wrap at 256, set to nil to disable
 		@zero_tape = false     # True if pointer is not allowed to be < 0
 		@embed_input = false   # True if input comes from end of code
+	end
+	
+	def copy(from)
+		# Copy current state. Can be used for forking
+		@program = from.program.deep_copy
+		@program_stack = from.program_stack.deep_copy
+		@ip = from.ip.deep_copy
+		@ip_stack = from.ip_stack.deep_copy
+		@positive_tape = from.positive_tape.deep_copy
+		@negative_tape = from.negative_tape.deep_copy
+		
+		if from.tape == from.positive_tape
+			@tape = @positive_tape
+		else
+			@tape = @negative_tape
+		end
+		
+		@p = from.p.deep_copy
+		@register = from.register.deep_copy
+		@loop_stack = from.loop_stack.deep_copy
 	end
 	
 	def preprocess_program
@@ -69,7 +95,7 @@ class Brainfucklike
 	end
 	
 	def do_instruction(instruction)
-		# Extended instruction set for brainfuck-like languages
+		# Instruction set for brainfuck-like languages
 		case instruction
 			when "+";	value_add
 			when "-";	value_sub

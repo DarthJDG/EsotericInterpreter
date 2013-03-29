@@ -22,6 +22,7 @@ elsif filename =~ /\.ook$/ then; language = "Ook"
 elsif filename =~ /\.blub$/ then; language = "Blub"
 elsif filename =~ /\.cow$/ then; language = "Cow"
 elsif filename =~ /\.spoon$/ then; language = "Spoon"
+elsif filename =~ /\.bfk$/ then; language = "Brainfork"
 end
 
 # Check options for forced languages
@@ -33,6 +34,7 @@ ARGV.each {|arg|
 		when "--blub";      language = "Blub"
 		when "--cow";       language = "Cow"
 		when "--spoon";     language = "Spoon"
+		when "--brainfork"; language = "Brainfork"
 	end
 }
 

@@ -15,8 +15,9 @@ It is a simple esoteric programming language interpreter written in Ruby. It has
 
 EsoInt supports the following languages so far:
 
-- Brainfuck
 - Blub
+- Brainfuck
+- Brainfork
 - COW
 - Ook!
 - Spoon

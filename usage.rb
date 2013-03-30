@@ -7,6 +7,7 @@ Usage:
 ruby esoint.rb [options] [file]
 
 Language is detected from file extension:
+   .b93      Befunge-93
    .bf       Brainfuck
    .bfk      Brainfork
    .blub     Blub
@@ -15,7 +16,7 @@ Language is detected from file extension:
    .spoon    Spoon
 
 You can force languages with the following options:
-   --blub --brainfork --brainfuck --cow --ook --spoon
+   --befunge-93 --blub --brainfork --brainfuck --cow --ook --spoon
 
 Language specific options:
    -0 --zero-tape     Brainfuck pointer can't go under zero.

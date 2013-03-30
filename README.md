@@ -9,20 +9,19 @@
 
 ## 1. What is EsoInt?
 
-It is a simple esoteric programming language interpreter written in Ruby. It has limited options at the moment and only supports brainfuck and its variations.
+It is a simple esoteric programming language interpreter written in Ruby. It was designed to be easily extensible to make adding variations and dialects easy. It is currently in development and has limited options so far.
 
 ## 2. Supported languages
 
 EsoInt supports the following languages so far:
 
+- Befunge-93
 - Blub
 - Brainfuck
 - Brainfork
 - COW
 - Ook!
 - Spoon
-
-It was designed to be easily extensible, brainfuck derivatives and dialects can be quickly added by changing only the parsing and instruction sets.
 
 ## 3. License and copyright
 

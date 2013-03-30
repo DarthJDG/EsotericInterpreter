@@ -23,18 +23,20 @@ elsif filename =~ /\.blub$/ then; language = "Blub"
 elsif filename =~ /\.cow$/ then; language = "Cow"
 elsif filename =~ /\.spoon$/ then; language = "Spoon"
 elsif filename =~ /\.bfk$/ then; language = "Brainfork"
+elsif filename =~ /\.b93$/ then; language = "Befunge93"
 end
 
 # Check options for forced languages
 
 ARGV.each {|arg|
 	case arg
-		when "--brainfuck"; language = "Brainfuck"
-		when "--ook";       language = "Ook"
-		when "--blub";      language = "Blub"
-		when "--cow";       language = "Cow"
-		when "--spoon";     language = "Spoon"
-		when "--brainfork"; language = "Brainfork"
+		when "--brainfuck";  language = "Brainfuck"
+		when "--ook";        language = "Ook"
+		when "--blub";       language = "Blub"
+		when "--cow";        language = "Cow"
+		when "--spoon";      language = "Spoon"
+		when "--brainfork";  language = "Brainfork"
+		when "--befunge-93"; language = "Befunge93"
 	end
 }
 
